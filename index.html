@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Automatiza toda tu mensajería con inteligencia artificial. WhatsApp, Instagram, email y más — respondiendo por ti, 24/7." />
+  <meta name="keywords" content="automatización mensajería, chatbot IA, WhatsApp bot, inteligencia artificial, atención al cliente" />
+  <meta name="author" content="MensajeIA" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MensajeIA — Automatización de mensajería con IA" />
+  <meta property="og:description" content="Responde más rápido. Convierte más. Con IA. Automatiza WhatsApp, Instagram, email y más." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mensajeia.com" />
+  <meta property="og:image" content="assets/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MensajeIA — Automatización de mensajería con IA" />
+  <meta name="twitter:description" content="Responde más rápido. Convierte más. Con IA." />
+  <meta name="twitter:image" content="assets/og-image.png" />
+
+  <title>MensajeIA — Automatización de mensajería con IA</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="page light" id="page">
+
+    <!-- NAVBAR -->
+    <nav class="nav" role="navigation" aria-label="Navegación principal">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        MensajeIA
+      </div>
+      <ul class="nav-links">
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#canales">Canales</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+          <span class="theme-icon sun">☀</span>
+          <span class="theme-icon moon">🌙</span>
+        </button>
+        <a href="#contacto" class="nav-cta">Empezar gratis</a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-badge">
+        <i class="ti ti-sparkles" aria-hidden="true"></i>
+        Automatización inteligente de mensajería
+      </div>
+      <h1 class="hero-title">
+        Responde más rápido.<br>
+        Convierte más.<br>
+        <span>Con IA.</span>
+      </h1>
+      <p class="hero-sub">
+        Automatiza toda tu mensajería con inteligencia artificial. WhatsApp, Instagram, email y más — respondiendo por ti, 24/7.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contacto" class="btn-primary">Ver demo en vivo</a>
+        <a href="#como-funciona" class="btn-outline">¿Cómo funciona?</a>
+      </div>
+
+      <div class="chat-demo" role="region" aria-label="Ejemplo de conversación automatizada">
+        <div class="chat-header">
+          <div class="chat-avatar"><i class="ti ti-robot" aria-hidden="true"></i></div>
+          <div>
+            <div class="chat-name">Asistente IA</div>
+            <div class="chat-status">● En línea ahora</div>
+          </div>
+        </div>
+        <div class="msg user"><div class="bubble user">Hola, ¿tienen el producto en color negro?</div></div>
+        <div class="msg"><div class="bubble bot">¡Hola! Sí, tenemos disponible en negro, blanco y azul marino. ¿Te gustaría ver los precios?</div></div>
+        <div class="msg user"><div class="bubble user">Sí, ¿cuánto cuesta?</div></div>
+        <div class="msg"><div class="bubble bot">El modelo negro está a $89.900. ¡Incluye envío gratis hoy! ¿Lo agrego al carrito? 🛒</div></div>
+        <div class="msg"><div class="typing"><span></span><span></span><span></span></div></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-row" role="region" aria-label="Estadísticas clave">
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Tasa de respuesta</div></div>
+      <div class="stat"><div class="stat-num">&lt;3s</div><div class="stat-label">Tiempo de respuesta promedio</div></div>
+      <div class="stat"><div class="stat-num">3.2×</div><div class="stat-label">Más conversiones</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Sin descansos</div></div>
+    </div>
+
+    <!-- FUNCIONES -->
+    <section class="section" id="funciones">
+      <div class="section-label">Funciones</div>
+      <h2 class="section-title">Todo lo que necesitas para atender sin parar</h2>
+      <p class="section-sub">Una IA entrenada con tu negocio que atiende, vende y fideliza clientes automáticamente.</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon teal"><i class="ti ti-brain" aria-hidden="true"></i></div><div class="feature-title">IA personalizada</div><div class="feature-desc">Se entrena con tu catálogo, FAQs y tono de marca para responder como tú.</div></div>
+        <div class="feature-card"><div class="feature-icon blue"><i class="ti ti-messages" aria-hidden="true"></i></div><div class="feature-title">Bandeja unificada</div><div class="feature-desc">Gestiona todos tus canales desde un solo lugar sin cambiar de app.</div></div>
+        <div class="feature-card"><div class="feature-icon amber"><i class="ti ti-clock-bolt" aria-hidden="true"></i></div><div class="feature-title">Respuestas instantáneas</div><div class="feature-desc">Menos de 3 segundos de respuesta en cualquier canal, a cualquier hora.</div></div>
+        <div class="feature-card"><div class="feature-icon coral"><i class="ti ti-chart-arrows-vertical" aria-hidden="true"></i></div><div class="feature-title">Análisis en tiempo real</div><div class="feature-desc">Ve qué preguntan más, cuánto conviertes y dónde mejorar.</div></div>
+        <div class="feature-card"><div class="feature-icon teal"><i class="ti ti-user-check" aria-hidden="true"></i></div><div class="feature-title">Escalado humano</div><div class="feature-desc">La IA detecta cuándo transferir al equipo. Sin fricción.</div></div>
+        <div class="feature-card"><div class="feature-icon blue"><i class="ti ti-plug-connected" aria-hidden="true"></i></div><div class="feature-title">Integraciones</div><div class="feature-desc">Conecta con tu CRM, tienda, agenda o sistema de pagos en minutos.</div></div>
+      </div>
+    </section>
+
+    <!-- CANALES -->
+    <section class="channels-section" id="canales">
+      <div class="section-label">Canales</div>
+      <h2 class="section-title">Donde tus clientes estén, ahí está la IA</h2>
+      <div class="channels-grid">
+        <div class="channel-pill"><span class="channel-dot" style="background:#25D366"></span>WhatsApp</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#E1306C"></span>Instagram DM</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#1877F2"></span>Facebook</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#555"></span>Email</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#FF6900"></span>SMS</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#0088cc"></span>Telegram</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#7289DA"></span>Discord</div>
+        <div class="channel-pill"><span class="channel-dot" style="background:#1D9E75"></span>Web Chat</div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="section" id="como-funciona">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Listo en menos de un día</h2>
+      <p class="section-sub">Sin conocimientos técnicos. Sin semanas de configuración.</p>
+      <div class="flow-steps">
+        <div class="flow-step"><div class="step-num">1</div><div class="step-title">Conecta tu canal</div><div class="step-desc">WhatsApp, Instagram o el canal que uses</div></div>
+        <div class="flow-step"><div class="step-num">2</div><div class="step-title">Entrena la IA</div><div class="step-desc">Sube tu catálogo, preguntas frecuentes y tono</div></div>
+        <div class="flow-step"><div class="step-num">3</div><div class="step-title">Define flujos</div><div class="step-desc">Crea respuestas automáticas por tipo de consulta</div></div>
+        <div class="flow-step"><div class="step-num">4</div><div class="step-title">Activa y listo</div><div class="step-desc">La IA empieza a atender en minutos</div></div>
+      </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section class="section plans-bg" id="precios">
+      <div class="section-label">Precios</div>
+      <h2 class="section-title">Simple. Predecible. Sin sorpresas.</h2>
+      <p class="section-sub">Empieza gratis, escala cuando lo necesites.</p>
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">Gratis</div>
+          <div class="plan-period">Para siempre</div>
+          <ul class="plan-features">
+            <li>1 canal activo</li>
+            <li>500 mensajes/mes</li>
+            <li>Respuestas básicas</li>
+            <li>Soporte por email</li>
+          </ul>
+          <a href="#contacto" class="plan-btn outline">Empezar gratis</a>
+        </div>
+        <div class="plan-card featured">
+          <div class="plan-badge">Más popular</div>
+          <div class="plan-name">Pro</div>
+          <div class="plan-price">$79<span class="plan-price-period">/mes</span></div>
+          <div class="plan-period">USD, facturación mensual</div>
+          <ul class="plan-features">
+            <li>5 canales activos</li>
+            <li>10.000 mensajes/mes</li>
+            <li>IA personalizada</li>
+            <li>Análisis avanzados</li>
+            <li>Soporte prioritario</li>
+          </ul>
+          <a href="#contacto" class="plan-btn solid">Contratar Pro</a>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">Empresa</div>
+          <div class="plan-price">A medida</div>
+          <div class="plan-period">Volumen personalizado</div>
+          <ul class="plan-features">
+            <li>Canales ilimitados</li>
+            <li>Mensajes ilimitados</li>
+            <li>IA con modelo propio</li>
+            <li>SLA garantizado</li>
+            <li>Implementación dedicada</li>
+          </ul>
+          <a href="#contacto" class="plan-btn outline">Hablar con ventas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact-section" id="contacto">
+      <div class="contact-inner">
+        <div class="section-label" style="color:#5DCAA5">Contacto</div>
+        <h2 class="contact-title">Empieza a automatizar hoy.</h2>
+        <p class="contact-sub">Sin tarjeta de crédito. Activo en menos de 24 horas. Cancela cuando quieras.</p>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="empresa">Empresa</label>
+              <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+          </div>
+          <div class="form-group">
+            <label for="canal">Canal de interés</label>
+            <select id="canal" name="canal">
+              <option value="">Selecciona un canal</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="instagram">Instagram DM</option>
+              <option value="facebook">Facebook</option>
+              <option value="email">Email</option>
+              <option value="todos">Todos los canales</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje (opcional)</label>
+            <textarea id="mensaje" name="mensaje" rows="3" placeholder="Cuéntanos sobre tu negocio..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit">
+            Crear cuenta gratis →
+          </button>
+          <div class="form-success" id="formSuccess">
+            <i class="ti ti-circle-check" aria-hidden="true"></i>
+            ¡Listo! Te contactaremos pronto.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div class="logo" style="font-size:16px"><span class="logo-dot"></span>MensajeIA</div>
+      <div class="footer-links">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-copy">© 2025 MensajeIA. Todos los derechos reservados.</div>
+    </footer>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
