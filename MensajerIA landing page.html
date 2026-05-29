@@ -1,0 +1,653 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .page {
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .page.light {
+    --bg: #ffffff;
+    --bg2: #f5f5f2;
+    --bg3: #ebebeb;
+    --text: #111;
+    --text2: #666;
+    --border: rgba(0,0,0,0.1);
+    --border2: rgba(0,0,0,0.2);
+    --cta-dark: #04342C;
+    --cta-text: #9FE1CB;
+    --cta-sub: #5DCAA5;
+    --logo-bg: #04342C;
+  }
+
+  .page.dark {
+    --bg: #0f1a17;
+    --bg2: #162018;
+    --bg3: #1e2e24;
+    --text: #e8f5f0;
+    --text2: #7aaa93;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --cta-dark: #E1F5EE;
+    --cta-text: #04342C;
+    --cta-sub: #0F6E56;
+    --logo-bg: #E1F5EE;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 0.5px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot { width: 8px; height: 8px; background: #1D9E75; border-radius: 50%; }
+
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .nav-links li { cursor: pointer; transition: color 0.2s; }
+  .nav-links li:hover { color: var(--text); }
+
+  .theme-toggle {
+    width: 40px; height: 22px;
+    border-radius: 999px;
+    border: 0.5px solid var(--border2);
+    background: var(--bg3);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #1D9E75;
+    transition: transform 0.3s;
+  }
+
+  .page.dark .theme-toggle::after { transform: translateX(18px); }
+
+  .theme-icon {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-size: 11px;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .theme-icon.sun { left: 5px; opacity: 1; }
+  .theme-icon.moon { right: 4px; opacity: 0; }
+  .page.dark .theme-icon.sun { opacity: 0; }
+  .page.dark .theme-icon.moon { opacity: 1; }
+
+  .nav-cta {
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s, background 0.3s, color 0.3s;
+  }
+
+  .nav-cta:hover { opacity: 0.8; }
+
+  .hero {
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    background: var(--bg);
+    transition: background 0.3s;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #E1F5EE;
+    color: #0F6E56;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    border: 0.5px solid #5DCAA5;
+  }
+
+  .page.dark .hero-badge { background: #04342C; color: #5DCAA5; border-color: #0F6E56; }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 6vw, 58px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    color: var(--text);
+    transition: color 0.3s;
+  }
+
+  .hero-title span { color: #1D9E75; }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text2);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: #1D9E75;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: #0F6E56; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 0.5px solid var(--border2);
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.3s, border-color 0.3s;
+  }
+
+  .btn-outline:hover { background: var(--bg2); }
+
+  .chat-demo {
+    margin: 3rem auto 0;
+    max-width: 420px;
+    border-radius: 12px;
+    border: 0.5px solid var(--border);
+    background: var(--bg2);
+    padding: 1.25rem;
+    text-align: left;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .chat-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 1rem; padding-bottom: 0.75rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .chat-avatar {
+    width: 32px; height: 32px;
+    background: #1D9E75; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px;
+  }
+
+  .chat-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .chat-status { font-size: 11px; color: #1D9E75; }
+
+  .msg { margin-bottom: 10px; display: flex; gap: 8px; }
+  .msg.user { justify-content: flex-end; }
+
+  .bubble {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .bubble.bot {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+
+  .bubble.user { background: #1D9E75; color: #fff; border-bottom-right-radius: 4px; }
+
+  .typing {
+    display: flex; gap: 4px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .typing span {
+    width: 6px; height: 6px;
+    background: var(--text2);
+    border-radius: 50%;
+    animation: blink 1.2s infinite;
+  }
+
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes blink {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  .stats-row {
+    display: flex; justify-content: center;
+    gap: 2rem; padding: 2rem;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    flex-wrap: wrap;
+    background: var(--bg2);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #1D9E75; }
+  .stat-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+  .section { padding: 4rem 2rem; background: var(--bg); transition: background 0.3s; }
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: #1D9E75; margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700; letter-spacing: -0.5px;
+    margin-bottom: 0.75rem; max-width: 480px;
+    color: var(--text); transition: color 0.3s;
+  }
+
+  .section-sub {
+    font-size: 15px; color: var(--text2); max-width: 420px;
+    line-height: 1.7; margin-bottom: 2.5rem; font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+
+  .feature-card {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.25rem;
+    transition: border-color 0.2s, background 0.3s;
+  }
+
+  .feature-card:hover { border-color: var(--border2); }
+
+  .feature-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 0.75rem;
+  }
+
+  .feature-icon.teal { background: #E1F5EE; color: #0F6E56; }
+  .feature-icon.blue { background: #E6F1FB; color: #185FA5; }
+  .feature-icon.amber { background: #FAEEDA; color: #854F0B; }
+  .feature-icon.coral { background: #FAECE7; color: #993C1D; }
+
+  .page.dark .feature-icon.teal { background: #04342C; color: #5DCAA5; }
+  .page.dark .feature-icon.blue { background: #042C53; color: #85B7EB; }
+  .page.dark .feature-icon.amber { background: #412402; color: #EF9F27; }
+  .page.dark .feature-icon.coral { background: #4A1B0C; color: #F0997B; }
+
+  .feature-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+  .feature-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  .channels-section {
+    background: var(--bg2);
+    padding: 4rem 2rem;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .channels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 2rem; }
+
+  .channel-pill {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; border-radius: 8px;
+    border: 0.5px solid var(--border);
+    background: var(--bg);
+    font-size: 13px; font-weight: 500;
+    color: var(--text);
+    cursor: pointer; transition: border-color 0.2s, background 0.3s;
+  }
+
+  .channel-pill:hover { border-color: #1D9E75; }
+
+  .channel-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 2rem; }
+
+  .plan-card {
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    background: var(--bg); position: relative;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .plan-card.featured { border: 2px solid #1D9E75; }
+
+  .plan-badge {
+    position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+    background: #1D9E75; color: #fff;
+    font-size: 11px; font-weight: 500;
+    padding: 3px 12px; border-radius: 999px; white-space: nowrap;
+  }
+
+  .plan-name { font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+
+  .plan-price {
+    font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800;
+    margin-bottom: 2px; color: var(--text); transition: color 0.3s;
+  }
+
+  .plan-period { font-size: 12px; color: var(--text2); margin-bottom: 1.25rem; }
+
+  .plan-features { list-style: none; margin-bottom: 1.25rem; }
+  .plan-features li {
+    font-size: 13px; color: var(--text2);
+    padding: 4px 0; display: flex; align-items: center; gap: 6px;
+  }
+
+  .plan-features li::before {
+    content: ''; display: inline-block;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #1D9E75; flex-shrink: 0;
+  }
+
+  .plan-btn {
+    width: 100%; padding: 9px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+  }
+
+  .plan-btn.outline {
+    border: 0.5px solid var(--border2);
+    background: transparent; color: var(--text);
+  }
+
+  .plan-btn.outline:hover { background: var(--bg2); }
+
+  .plan-btn.solid { border: none; background: #1D9E75; color: #fff; }
+  .plan-btn.solid:hover { background: #0F6E56; }
+
+  .cta-section {
+    padding: 4rem 2rem; text-align: center;
+    background: var(--cta-dark); transition: background 0.3s;
+  }
+
+  .cta-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700; letter-spacing: -0.5px;
+    color: var(--cta-text);
+    max-width: 480px; margin: 0 auto 1rem;
+    transition: color 0.3s;
+  }
+
+  .cta-sub {
+    font-size: 15px; line-height: 1.7; font-weight: 300;
+    color: var(--cta-sub); max-width: 420px;
+    margin: 0 auto 2rem; transition: color 0.3s;
+  }
+
+  .flow-steps { display: flex; gap: 0; flex-wrap: nowrap; overflow-x: auto; margin-top: 2rem; padding-bottom: 0.5rem; }
+
+  .flow-step { flex: 1; min-width: 140px; text-align: center; position: relative; padding: 1rem 0.5rem; }
+
+  .flow-step:not(:last-child)::after {
+    content: ''; position: absolute;
+    top: 28px; right: -1px;
+    width: 100%; height: 1px;
+    background: var(--border); z-index: 0;
+  }
+
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #E1F5EE; color: #0F6E56;
+    font-size: 14px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px; position: relative; z-index: 1;
+    font-family: 'Syne', sans-serif; border: 0.5px solid #5DCAA5;
+  }
+
+  .page.dark .step-num { background: #04342C; color: #5DCAA5; border-color: #0F6E56; }
+
+  .step-title { font-size: 13px; font-weight: 500; color: var(--text); transition: color 0.3s; }
+  .step-desc { font-size: 12px; color: var(--text2); line-height: 1.5; transition: color 0.3s; }
+
+  .footer {
+    padding: 2rem;
+    border-top: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: var(--text2);
+    flex-wrap: wrap; gap: 1rem;
+    background: var(--bg); transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+</style>
+
+<div class="page light" id="page">
+
+  <nav class="nav">
+    <div class="logo">
+      <span class="logo-dot"></span>
+      MensajeIA
+    </div>
+    <ul class="nav-links">
+      <li>Funciones</li>
+      <li>Canales</li>
+      <li>Precios</li>
+      <li>Empresa</li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <span class="theme-icon sun">☀</span>
+        <span class="theme-icon moon">🌙</span>
+      </button>
+      <button class="nav-cta">Empezar gratis</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">
+      <i class="ti ti-sparkles" aria-hidden="true"></i>
+      Automatización inteligente de mensajería
+    </div>
+    <h1 class="hero-title">
+      Responde más rápido.<br>
+      Convierte más.<br>
+      <span>Con IA.</span>
+    </h1>
+    <p class="hero-sub">Automatiza toda tu mensajería con inteligencia artificial. WhatsApp, Instagram, email y más — respondiendo por ti, 24/7.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Ver demo en vivo</button>
+      <button class="btn-outline">¿Cómo funciona?</button>
+    </div>
+
+    <div class="chat-demo">
+      <div class="chat-header">
+        <div class="chat-avatar"><i class="ti ti-robot" aria-hidden="true"></i></div>
+        <div>
+          <div class="chat-name">Asistente IA</div>
+          <div class="chat-status">● En línea ahora</div>
+        </div>
+      </div>
+      <div class="msg user"><div class="bubble user">Hola, ¿tienen el producto en color negro?</div></div>
+      <div class="msg"><div class="bubble bot">¡Hola! Sí, tenemos disponible en negro, blanco y azul marino. ¿Te gustaría ver los precios?</div></div>
+      <div class="msg user"><div class="bubble user">Sí, ¿cuánto cuesta?</div></div>
+      <div class="msg"><div class="bubble bot">El modelo negro está a $89.900. ¡Incluye envío gratis hoy! ¿Lo agrego al carrito? 🛒</div></div>
+      <div class="msg"><div class="typing"><span></span><span></span><span></span></div></div>
+    </div>
+  </section>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Tasa de respuesta</div></div>
+    <div class="stat"><div class="stat-num">&lt;3s</div><div class="stat-label">Tiempo de respuesta promedio</div></div>
+    <div class="stat"><div class="stat-num">3.2×</div><div class="stat-label">Más conversiones</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Sin descansos</div></div>
+  </div>
+
+  <section class="section">
+    <div class="section-label">Funciones</div>
+    <h2 class="section-title">Todo lo que necesitas para atender sin parar</h2>
+    <p class="section-sub">Una IA entrenada con tu negocio que atiende, vende y fideliza clientes automáticamente.</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon teal"><i class="ti ti-brain" aria-hidden="true"></i></div><div class="feature-title">IA personalizada</div><div class="feature-desc">Se entrena con tu catálogo, FAQs y tono de marca para responder como tú.</div></div>
+      <div class="feature-card"><div class="feature-icon blue"><i class="ti ti-messages" aria-hidden="true"></i></div><div class="feature-title">Bandeja unificada</div><div class="feature-desc">Gestiona todos tus canales desde un solo lugar sin cambiar de app.</div></div>
+      <div class="feature-card"><div class="feature-icon amber"><i class="ti ti-clock-bolt" aria-hidden="true"></i></div><div class="feature-title">Respuestas instantáneas</div><div class="feature-desc">Menos de 3 segundos de respuesta en cualquier canal, a cualquier hora.</div></div>
+      <div class="feature-card"><div class="feature-icon coral"><i class="ti ti-chart-arrows-vertical" aria-hidden="true"></i></div><div class="feature-title">Análisis en tiempo real</div><div class="feature-desc">Ve qué preguntan más, cuánto conviertes y dónde mejorar.</div></div>
+      <div class="feature-card"><div class="feature-icon teal"><i class="ti ti-user-check" aria-hidden="true"></i></div><div class="feature-title">Escalado humano</div><div class="feature-desc">La IA detecta cuándo transferir al equipo. Sin fricción.</div></div>
+      <div class="feature-card"><div class="feature-icon blue"><i class="ti ti-plug-connected" aria-hidden="true"></i></div><div class="feature-title">Integraciones</div><div class="feature-desc">Conecta con tu CRM, tienda, agenda o sistema de pagos en minutos.</div></div>
+    </div>
+  </section>
+
+  <section class="channels-section">
+    <div class="section-label">Canales</div>
+    <h2 class="section-title">Donde tus clientes estén, ahí está la IA</h2>
+    <div class="channels-grid">
+      <div class="channel-pill"><span class="channel-dot" style="background:#25D366"></span>WhatsApp</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#E1306C"></span>Instagram DM</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#1877F2"></span>Facebook</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#555"></span>Email</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#FF6900"></span>SMS</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#0088cc"></span>Telegram</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#7289DA"></span>Discord</div>
+      <div class="channel-pill"><span class="channel-dot" style="background:#1D9E75"></span>Web Chat</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">Cómo funciona</div>
+    <h2 class="section-title">Listo en menos de un día</h2>
+    <p class="section-sub">Sin conocimientos técnicos. Sin semanas de configuración.</p>
+    <div class="flow-steps">
+      <div class="flow-step"><div class="step-num">1</div><div class="step-title">Conecta tu canal</div><div class="step-desc">WhatsApp, Instagram o el canal que uses</div></div>
+      <div class="flow-step"><div class="step-num">2</div><div class="step-title">Entrena la IA</div><div class="step-desc">Sube tu catálogo, preguntas frecuentes y tono</div></div>
+      <div class="flow-step"><div class="step-num">3</div><div class="step-title">Define flujos</div><div class="step-desc">Crea respuestas automáticas por tipo de consulta</div></div>
+      <div class="flow-step"><div class="step-num">4</div><div class="step-title">Activa y listo</div><div class="step-desc">La IA empieza a atender en minutos</div></div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg2); border-top: 0.5px solid var(--border);">
+    <div class="section-label">Precios</div>
+    <h2 class="section-title">Simple. Predecible. Sin sorpresas.</h2>
+    <p class="section-sub">Empieza gratis, escala cuando lo necesites.</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">Gratis</div>
+        <div class="plan-period">Para siempre</div>
+        <ul class="plan-features">
+          <li>1 canal activo</li>
+          <li>500 mensajes/mes</li>
+          <li>Respuestas básicas</li>
+          <li>Soporte por email</li>
+        </ul>
+        <button class="plan-btn outline">Empezar gratis</button>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">Más popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$79<span style="font-size:16px; font-weight:400">/mes</span></div>
+        <div class="plan-period">USD, facturación mensual</div>
+        <ul class="plan-features">
+          <li>5 canales activos</li>
+          <li>10.000 mensajes/mes</li>
+          <li>IA personalizada</li>
+          <li>Análisis avanzados</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <button class="plan-btn solid">Contratar Pro</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Empresa</div>
+        <div class="plan-price">A medida</div>
+        <div class="plan-period">Volumen personalizado</div>
+        <ul class="plan-features">
+          <li>Canales ilimitados</li>
+          <li>Mensajes ilimitados</li>
+          <li>IA con modelo propio</li>
+          <li>SLA garantizado</li>
+          <li>Implementación dedicada</li>
+        </ul>
+        <button class="plan-btn outline">Hablar con ventas</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-title">Empieza a automatizar hoy.</h2>
+    <p class="cta-sub">Sin tarjeta de crédito. Activo en menos de 24 horas. Cancela cuando quieras.</p>
+    <button class="btn-primary" style="font-size: 16px; padding: 14px 32px; background: #5DCAA5; color: #04342C;">Crear cuenta gratis →</button>
+  </section>
+
+  <footer class="footer">
+    <div class="logo" style="font-size: 16px;"><span class="logo-dot"></span>MensajeIA</div>
+    <div style="display: flex; gap: 1.5rem; font-size: 13px; color: var(--text2);">
+      <span style="cursor:pointer"></span>
+      <span style="cursor:pointer"></span>
+      <span style="cursor:pointer"></span>
+    </div>
+    <div style="color: var(--text2);">© 2025 MensajeIA. Todos los derechos reservados.</div>
+  </footer>
+
+</div>
+
+<script>
+  function toggleTheme() {
+    const page = document.getElementById('page');
+    page.classList.toggle('dark');
+    page.classList.toggle('light');
+  }
+</script>
